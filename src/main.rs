@@ -12,7 +12,7 @@ fn main() {
     // describe the main window
     let main_window = WindowDesc::new(build_root_widget())
         .title(WINDOW_TITLE)
-        .window_size((400.0, 400.0));
+        .window_size((800.0, 400.0));
 
     // create the initial app state
     let initial_state = StateMachine::new();

@@ -6,6 +6,16 @@
 
 This is a simple game where the user has to guess a number between 1 and 100. The user has 10 attempts to guess the number. If the user guesses the number correctly, the game ends and the user wins. If the user does not guess the number correctly after 10 attempts, the game ends and the user loses.
 
+### Game Rules
+
+- The user has 10 attempts to guess the number.
+- The user can only enter numbers between 1 and 100.
+- The user can only enter numbers.
+- After 10 attempts, the game ends and the user loses.
+- If the user guesses the number correctly, the game ends and the user wins.
+- The user is informed if the guess is too high or too low.
+- Points are awarded based on the number of attempts.
+
 ## Installation
 
 1. Clone the repository to your local machine.
