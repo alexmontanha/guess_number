@@ -12,7 +12,7 @@ fn main() {
     // describe the main window
     let main_window = WindowDesc::new(build_root_widget())
         .title(WINDOW_TITLE)
-        .window_size((800.0, 400.0));
+        .window_size((800.0, 600.0));
 
     // create the initial app state
     let initial_state = StateMachine::new();
@@ -39,7 +39,7 @@ fn build_root_widget() -> impl Widget<StateMachine> {
     let label_name = Label::new(|data: &StateMachine, _env: &Env| format!("{}", data.name));
     let label_message = Label::new(|data: &StateMachine, _env: &Env| format!("{}", data.message));
 
-    let layout = Flex::column()
+    let mut layout = Flex::column()
         .with_child(label)
         .with_spacer(VERTICAL_WIDGET_SPACING)
         .with_child(textbox)
@@ -48,7 +48,21 @@ fn build_root_widget() -> impl Widget<StateMachine> {
         .with_spacer(VERTICAL_WIDGET_SPACING)
         .with_child(label_name)
         .with_spacer(VERTICAL_WIDGET_SPACING)
-        .with_child(label_message);
+        .with_child(label_message)
+        .with_spacer(VERTICAL_WIDGET_SPACING)
+        .with_spacer(VERTICAL_WIDGET_SPACING);
+
+    // create an Vec<(String, i32)> invoked from StateMachine::load_score()
+    let scores = StateMachine::load_score().unwrap_or_default();
+   
+    //create a flex with the array of tuples
+    let mut flex_scores = Flex::column();
+    for player_score in scores {
+        flex_scores = flex_scores.with_child(Label::new(format!("{} => {}", player_score.0, player_score.1)));
+    }
+
+    //add the flex of scores to the layout
+    layout = layout.with_child(flex_scores);
 
     Align::centered(layout)
 }
